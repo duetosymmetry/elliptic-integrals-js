@@ -11,7 +11,7 @@ The functions extend the `Math` object with:
 * `Math.EllipticE(m)`: Complete elliptic integral of the second type
 * `Math.EllipticPi(n,m)`: Complete elliptic integral of the third type
 
-The arguments are the *parameter* `m`, which is related to the *modulus* `k` via `m=k^2`; and the *characteristic `n`.
+The arguments are the *parameter* `m`, which is related to the *modulus* `k` via `m=k^2`; and the *characteristic* `n`.
 The algorithms are valid for `m<1`, `n<1`.
 
 To be completely clear, the functions are computing the following integrals:
