@@ -70,9 +70,9 @@ Math.EllipticE = function( m )
 };
 
 /* EllipticPi(n,m) - The complete elliptic integral of the third type.
- * The arguments are
- * is the *parameter* m = k^2, where k is the *modulus*.
- * The parameters must satisfy n < 1, m < 1.
+ * The arguments are the characteristic n,
+ * and the *parameter* m = k^2, where k is the *modulus*.
+ * The arguments must satisfy n < 1, m < 1.
  * In terms of the integral definition, we have
  * Pi(n,m) = \int_0^{\pi/2} \frac{1}{(1-n(\sin\theta)^2)\sqrt{1 - m (\sin\theta)^2}} d\theta
  * This algorithm comes from:
