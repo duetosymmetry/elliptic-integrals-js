@@ -7,9 +7,9 @@ These iteration schemes come from [Garrett, Milan Wayne, Journal of Applied Phys
 
 The functions extend the `Math` object with:
 * `Math.agm(a,g)`: arithmetic-geometric mean of two non-negative numbers
-* `Math.EllipticK(m)`: Complete elliptic integral of the first type
-* `Math.EllipticE(m)`: Complete elliptic integral of the second type
-* `Math.EllipticPi(n,m)`: Complete elliptic integral of the third type
+* `Math.EllipticK(m)`: Complete elliptic integral of the first kind
+* `Math.EllipticE(m)`: Complete elliptic integral of the second kind
+* `Math.EllipticPi(n,m)`: Complete elliptic integral of the third kind
 
 The arguments are the *parameter* `m`, which is related to the *modulus* `k` via `m=k^2`; and the *characteristic* `n`.
 The algorithms are valid for `m<1`, `n<1`.
