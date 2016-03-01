@@ -1,10 +1,12 @@
 /* The arithmetic-geometric mean of two non-negative numbers */
 Math.agm = function(a0,g0)
 {
+  var maxIter = 50;
+
   var an = (a0+g0)/2;
   var gn = Math.sqrt(a0*g0);
 
-  while (Math.abs(an-gn) > 1e-15)
+  for (var iter = 0; (iter < maxIter) && (Math.abs(an-gn) > 1e-15); iter++)
   {
     a0 = 0.5 * (an + gn);
     g0 = Math.sqrt(an*gn);
@@ -12,6 +14,9 @@ Math.agm = function(a0,g0)
     an = a0;
     gn = g0;
   };
+
+  if (iter == maxIter)
+    console.warn("Math.agm hit iteration limit of " + maxIter + ", probably didn't converge.");
 
   return an;
 };
@@ -44,6 +49,8 @@ Math.EllipticK = function( m )
  */
 Math.EllipticE = function( m )
 {
+  var iter = 0, maxIter = 50;
+
   var kprime = Math.sqrt(1. - m);
 
   var a0 = 1., g0 = kprime;
@@ -53,7 +60,7 @@ Math.EllipticE = function( m )
   var twoPow = 0.25;
 
   var partialSum = 1. - 0.5 * m;
-
+  
   do {
     partialSum -= twoPow * (an - gn)*(an - gn);
     twoPow *= 2.; 
@@ -64,7 +71,12 @@ Math.EllipticE = function( m )
     an = a0;
     gn = g0;
 
-  } while (Math.abs(an-gn) > 1e-15);
+    iter++;
+
+  } while ((Math.abs(an-gn) > 1e-15) && (iter < maxIter));
+
+  if (iter == maxIter)
+    console.warn("Math.EllipticE hit iteration limit of " + maxIter + ", probably didn't converge.");
 
   return 0.5 * Math.PI * partialSum / an; 
 };
@@ -84,6 +96,8 @@ Math.EllipticE = function( m )
  */
 Math.EllipticPi = function( n, m )
 {
+  var iter = 0, maxIter = 50;
+
   var kprime = Math.sqrt(1. - m);
 
   var a0 = 1., g0 = kprime, zeta0 = 0.;
@@ -106,7 +120,12 @@ Math.EllipticPi = function( n, m )
 
     deltan = 0.25 * gn / an * (2. + deltan + 1./deltan);
 
-  } while ((Math.abs(an-gn) > 1e-15) || (Math.abs(deltan - 1.) > 1e-15));
+    iter++;
+
+  } while (((Math.abs(an-gn) > 1e-15) || (Math.abs(deltan - 1.) > 1e-15)) && (iter < maxIter));
+
+  if (iter == maxIter)
+    console.warn("Math.EllipticPi hit iteration limit of " + maxIter + ", probably didn't converge.");
 
   return 0.5 * Math.PI / an * (1. + zetan);
 };
